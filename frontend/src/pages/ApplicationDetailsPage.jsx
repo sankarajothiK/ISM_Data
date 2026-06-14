@@ -165,15 +165,7 @@ const ApplicationDetailsPage = () => {
 
   const isPdf = candidate.resumeUrl?.toLowerCase().includes('.pdf') && !candidate.resumeUrl?.includes('/raw/upload/');
 
-  const getDownloadUrl = (url) => {
-    if (!url) return '#';
-    // Cloudinary raw resources do not support transformation flags (like fl_attachment) and will throw a 401.
-    // Only insert the fl_attachment flag for image/upload/ URLs (which are used for new PDF uploads).
-    if (url.includes('res.cloudinary.com') && url.includes('/image/upload/')) {
-      return url.replace('/image/upload/', '/image/upload/fl_attachment/');
-    }
-    return url;
-  };
+
 
   const handlePrint = () => {
     window.print();
@@ -637,7 +629,7 @@ const ApplicationDetailsPage = () => {
                 <h3 className="text-base font-bold text-slate-950">Candidate Resume</h3>
               </div>
               <a
-                href={getDownloadUrl(candidate.resumeUrl)}
+                href={candidate.resumeUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center space-x-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-950 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
