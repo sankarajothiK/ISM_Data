@@ -167,9 +167,10 @@ const ApplicationDetailsPage = () => {
 
   const getDownloadUrl = (url) => {
     if (!url) return '#';
-    // If it's a Cloudinary URL, insert the fl_attachment flag to force browser download as file
-    if (url.includes('res.cloudinary.com')) {
-      return url.replace('/upload/', '/upload/fl_attachment/');
+    // Cloudinary raw resources do not support transformation flags (like fl_attachment) and will throw a 401.
+    // Only insert the fl_attachment flag for image/upload/ URLs (which are used for new PDF uploads).
+    if (url.includes('res.cloudinary.com') && url.includes('/image/upload/')) {
+      return url.replace('/image/upload/', '/image/upload/fl_attachment/');
     }
     return url;
   };
