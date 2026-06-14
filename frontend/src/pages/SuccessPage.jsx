@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, Link, Navigate } from 'react-router-dom';
-import { FiCheckCircle, FiMail, FiPhone, FiMapPin, FiCalendar, FiBriefcase, FiArrowLeft } from 'react-icons/fi';
+import { FiCheckCircle, FiCalendar, FiBriefcase, FiArrowLeft } from 'react-icons/fi';
 import Logo from '../components/Logo';
 
 const SuccessPage = () => {
@@ -75,26 +75,6 @@ const SuccessPage = () => {
               <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Submission Date</p>
               <p className="text-sm font-bold text-slate-800">{appliedDate}</p>
             </div>
-          </div>
-        </div>
-
-        {/* Corporate Details */}
-        <div className="border-t border-slate-100 pt-6 text-left space-y-3">
-          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Company Contact Information</h4>
-          
-          <div className="flex items-center text-xs text-slate-600 space-x-2">
-            <FiMail className="w-4 h-4 text-slate-400 shrink-0" />
-            <span>careers@ismdatatechnology.com</span>
-          </div>
-
-          <div className="flex items-center text-xs text-slate-600 space-x-2">
-            <FiPhone className="w-4 h-4 text-slate-400 shrink-0" />
-            <span>+91 98765 43210</span>
-          </div>
-
-          <div className="flex items-center text-xs text-slate-600 space-x-2">
-            <FiMapPin className="w-4 h-4 text-slate-400 shrink-0" />
-            <span>ISM Data Tech, Tech Park, City Centre, India</span>
           </div>
         </div>
 
