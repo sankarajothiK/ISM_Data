@@ -163,7 +163,7 @@ const ApplicationDetailsPage = () => {
     return classes[status] || 'bg-slate-50 text-slate-700 border-slate-100';
   };
 
-  const isPdf = candidate.resumeUrl?.toLowerCase().includes('.pdf');
+  const isPdf = candidate.resumeUrl?.toLowerCase().includes('.pdf') && !candidate.resumeUrl?.includes('/raw/upload/');
 
   const getDownloadUrl = (url) => {
     if (!url) return '#';
@@ -659,8 +659,8 @@ const ApplicationDetailsPage = () => {
               ) : (
                 <div className="p-8 text-center text-slate-400 text-sm space-y-2">
                   <FiAlertCircle className="w-10 h-10 mx-auto text-slate-300" />
-                  <p className="font-semibold">Inline preview is available for PDF formats.</p>
-                  <p className="text-xs">Word documents (.doc, .docx) will download automatically instead. Click the "Download Resume" button above to view.</p>
+                  <p className="font-semibold">Inline preview is available for new PDF uploads.</p>
+                  <p className="text-xs">Word documents (.doc, .docx) or older system uploads can be accessed by clicking the "Download Resume" button above.</p>
                 </div>
               )}
             </div>
