@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+jspdf-autotable/
+dist/
+build/
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dev_err.txt
+build_err.txt
+server_err.txt
+
+# OS metadata
+.DS_Store
+Thumbs.db
