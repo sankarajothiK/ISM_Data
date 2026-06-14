@@ -163,7 +163,16 @@ const ApplicationDetailsPage = () => {
     return classes[status] || 'bg-slate-50 text-slate-700 border-slate-100';
   };
 
-  const isPdf = candidate.resumeUrl?.toLowerCase().endsWith('.pdf');
+  const isPdf = candidate.resumeUrl?.toLowerCase().includes('.pdf');
+
+  const getDownloadUrl = (url) => {
+    if (!url) return '#';
+    // If it's a Cloudinary URL, insert the fl_attachment flag to force browser download as file
+    if (url.includes('res.cloudinary.com')) {
+      return url.replace('/upload/', '/upload/fl_attachment/');
+    }
+    return url;
+  };
 
   const handlePrint = () => {
     window.print();
@@ -627,10 +636,9 @@ const ApplicationDetailsPage = () => {
                 <h3 className="text-base font-bold text-slate-950">Candidate Resume</h3>
               </div>
               <a
-                href={candidate.resumeUrl}
+                href={getDownloadUrl(candidate.resumeUrl)}
                 target="_blank"
                 rel="noreferrer"
-                download
                 className="flex items-center space-x-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-950 text-white rounded-lg text-xs font-bold transition-colors cursor-pointer"
               >
                 <FiDownload className="w-3.5 h-3.5" />

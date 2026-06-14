@@ -22,7 +22,8 @@ const storage = new CloudinaryStorage({
     
     // Separate folder and resource types for photos vs documents
     const folder = file.fieldname === 'photo' ? 'recruitment_photos' : 'recruitment_resumes';
-    const resource_type = file.fieldname === 'photo' ? 'image' : 'raw'; // raw is required for doc/docx files
+    const isPdf = fileExtension === 'pdf';
+    const resource_type = (file.fieldname === 'photo' || isPdf) ? 'image' : 'raw'; 
 
     return {
       folder,

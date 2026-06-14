@@ -113,7 +113,9 @@ const createApplication = async (req, res, next) => {
         const photoFile = req.files?.['photo']?.[0];
         if (resumeFile) {
           const publicId = getCloudinaryPublicId(resumeFile.path);
-          if (publicId) cloudinary.uploader.destroy(publicId, { resource_type: 'raw' }).catch(e => console.error(e));
+          const isPdf = resumeFile.path?.toLowerCase().endsWith('.pdf') || resumeFile.originalname?.toLowerCase().endsWith('.pdf');
+          const resourceType = isPdf ? 'image' : 'raw';
+          if (publicId) cloudinary.uploader.destroy(publicId, { resource_type: resourceType }).catch(e => console.error(e));
         }
         if (photoFile) {
           const publicId = getCloudinaryPublicId(photoFile.path);
@@ -204,7 +206,9 @@ const createApplication = async (req, res, next) => {
 
       if (resumeFile) {
         const publicId = getCloudinaryPublicId(resumeFile.path);
-        if (publicId) cloudinary.uploader.destroy(publicId, { resource_type: 'raw' }).catch(e => console.error(e));
+        const isPdf = resumeFile.path?.toLowerCase().endsWith('.pdf') || resumeFile.originalname?.toLowerCase().endsWith('.pdf');
+        const resourceType = isPdf ? 'image' : 'raw';
+        if (publicId) cloudinary.uploader.destroy(publicId, { resource_type: resourceType }).catch(e => console.error(e));
       }
       if (photoFile) {
         const publicId = getCloudinaryPublicId(photoFile.path);
@@ -333,7 +337,9 @@ const deleteApplication = async (req, res, next) => {
     // Delete Resume file from Cloudinary
     const resumeId = getCloudinaryPublicId(application.resumeUrl);
     if (resumeId) {
-      await cloudinary.uploader.destroy(resumeId, { resource_type: 'raw' }).catch((err) => {
+      const isPdf = application.resumeUrl?.toLowerCase().includes('.pdf');
+      const resourceType = isPdf ? 'image' : 'raw';
+      await cloudinary.uploader.destroy(resumeId, { resource_type: resourceType }).catch((err) => {
         console.error('Error removing Cloudinary resume:', err.message);
       });
     }
