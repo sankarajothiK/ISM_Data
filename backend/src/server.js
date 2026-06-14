@@ -57,6 +57,14 @@ const apiLimiter = rateLimit({
 });
 app.use('/api', apiLimiter);
 
+// Root status route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'ISM Data Technology Recruitment API Server is Online',
+  });
+});
+
 // Mount Application API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/jobs', require('./routes/jobRoutes'));
